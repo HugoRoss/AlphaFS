@@ -117,7 +117,7 @@ namespace Alphaleonis.Win32.Filesystem
       [SecurityCritical]
       public static bool IsLongPath(string path)
       {
-         return !Utils.IsNullOrWhiteSpace(path) && path.StartsWith(LongPathPrefix, StringComparison.OrdinalIgnoreCase);
+         return !Utils.IsNullOrWhiteSpace(path) && path.StartsWith(LongPathPrefix, StringComparison.Ordinal);
       }
 
       #endregion // IsLongPath
@@ -145,11 +145,11 @@ namespace Alphaleonis.Win32.Filesystem
 
          // ".", "C:"
          if (path.Length <= 2 ||
-             path.StartsWith(LongPathPrefix, StringComparison.OrdinalIgnoreCase) ||
-             path.StartsWith(LogicalDrivePrefix, StringComparison.OrdinalIgnoreCase))
+             path.StartsWith(LongPathPrefix, StringComparison.Ordinal) ||
+             path.StartsWith(LogicalDrivePrefix, StringComparison.Ordinal))
             return path;
 
-         if (path.StartsWith(UncPrefix, StringComparison.OrdinalIgnoreCase))
+         if (path.StartsWith(UncPrefix, StringComparison.Ordinal))
             return LongPathUncPrefix + path.Substring(UncPrefix.Length);
 
          // Don't use char.IsLetter() here as that can be misleading.
@@ -229,7 +229,7 @@ namespace Alphaleonis.Win32.Filesystem
          if (options != GetFullPathOptions.None)
             path = ApplyFullPathOptions(path, options);
 
-         return !path.StartsWith(LongPathPrefix, StringComparison.OrdinalIgnoreCase)
+         return !path.StartsWith(LongPathPrefix, StringComparison.Ordinal)
             ? path
             : (path.StartsWith(LongPathUncPrefix, StringComparison.OrdinalIgnoreCase)
                ? UncPrefix + path.Substring(LongPathUncPrefix.Length)

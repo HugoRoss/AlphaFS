@@ -207,8 +207,8 @@ namespace Alphaleonis.Win32.Filesystem
                      fibdi = safeBuffer.PtrToStructure<NativeMethods.FILE_ID_BOTH_DIR_INFO>(offset);
                      string fileName = safeBuffer.PtrToStringUni(offset + fileNameOffset, (int)(fibdi.FileNameLength / 2));
 
-                     if (!fileName.Equals(Path.CurrentDirectoryPrefix, StringComparison.OrdinalIgnoreCase) &&
-                         !fileName.Equals(Path.ParentDirectoryPrefix, StringComparison.OrdinalIgnoreCase))
+                     if (!fileName.Equals(Path.CurrentDirectoryPrefix, StringComparison.Ordinal) &&
+                         !fileName.Equals(Path.ParentDirectoryPrefix, StringComparison.Ordinal))
                         yield return new FileIdBothDirectoryInfo(fibdi, fileName);
 
                      offset += fibdi.NextEntryOffset;
